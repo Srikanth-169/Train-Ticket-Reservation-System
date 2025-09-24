@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('GIT CHECKOUT') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'pic', url: 'https://github.com/vijay254452/Java-Projects-Collections.git']])
+                checkout 'https://github.com/Srikanth-169/Train-Ticket-Reservation-System.git'
             }
         }
 
