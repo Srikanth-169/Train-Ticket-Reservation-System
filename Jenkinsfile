@@ -67,8 +67,8 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 sh """
-                  kubectl apply -f k8s/deployment.yml
-                  kubectl apply -f k8s/ingress.yaml || true
+                  kubectl apply -f deployment.yml
+                  kubectl apply -f ingress.yaml || true
                 """
             }
         }
