@@ -10,7 +10,7 @@ spec:
     - host: java-app.local
       http:
         paths:
-          - path: /
+          - path: /train
             pathType: Prefix
             backend:
               service:
