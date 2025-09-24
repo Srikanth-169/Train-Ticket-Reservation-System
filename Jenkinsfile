@@ -46,17 +46,23 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+       stage('Build Docker Image') {
             steps {
                 script {
-                    sh """
-                      docker build -t srikanth169/java-app:latest .
-                      echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
-                      docker push your-dockerhub-username/java-app:latest
-                    """
+                    sh 'docker build -t srikanth169/train-ticket:v1 .'
                 }
             }
         }
+
+        stage('Push to DockerHub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                    sh "echo $PASS | docker login -u $USER --password-stdin"
+                    sh "docker push srikanth169/train-ticket:v1"
+                }
+            }
+        }
+
 
         stage('Deploy to Kubernetes') {
             steps {
