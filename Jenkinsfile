@@ -14,7 +14,8 @@ pipeline {
     stages {
         stage('GIT CHECKOUT') {
             steps {
-                checkout 'https://github.com/Srikanth-169/Train-Ticket-Reservation-System.git'
+                branches: [[name: '*/main']], 
+                userRemoteConfigs: [[url: 'https://github.com/Srikanth-169/Train-Ticket-Reservation-System.git']]
             }
         }
 
