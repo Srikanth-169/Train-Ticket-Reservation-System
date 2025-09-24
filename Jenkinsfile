@@ -37,10 +37,11 @@ pipeline {
             steps { sh "mvn package -DskipTests" }
         }
 
-        stage('SonarQube Analysis') {
+         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('sri') {
-                    sh "mvn sonar:sonar -Dsonar.projectKey=java-app -Dsonar.host.url=http://<SONARQUBE_URL> -Dsonar.login=<SONAR_TOKEN>"
+                
+                withSonarQubeEnv('sri') {  
+                    sh 'mvn clean verify sonar:sonar'
                 }
             }
         }
