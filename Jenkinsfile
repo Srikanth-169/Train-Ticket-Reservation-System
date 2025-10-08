@@ -9,6 +9,7 @@ pipeline {
     environment {
         SONARQUBE_SCANNER = 'sq' // SonarQube scanner name from Jenkins
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
+        AWS Credentials = nnnn
     }
 
     stages {
