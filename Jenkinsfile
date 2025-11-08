@@ -65,13 +65,20 @@ pipeline {
             }
         }
 
-
-        stage('Deploy to Kubernetes') {
+stage('Deploy to EKS Cluster') {
             steps {
-                sh """
-                  kubectl apply -f deployment.yml
-                  kubectl apply -f ingress.yaml || true
-                """
+                withAWS(credentials: 'aws-cred', region: 'ap-south-1') {
+                    sh '''
+                    echo "Verifying AWS credentials..."
+                    aws sts get-caller-identity
+
+                    echo "Deploying to EKS..."
+                    aws eks update-kubeconfig --region ap-south-1 --name sri
+                    kubectl apply -f deployment.yml
+                    kubectl apply -f service.yml
+                    kubectl apply -f ingress.yml
+                    '''
+                }
             }
         }
     }
