@@ -9,8 +9,8 @@ pipeline {
     environment {
         SONARQUBE_SCANNER = 'sq' // SonarQube scanner name from Jenkins
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-creds')
+        EKS_CLUSTER_NAME = 'sri'
         AWS_REGION = 'ap-south-1'
-        KUBECONFIG = 'kubeconfig-cred'
     }
 
     stages {
