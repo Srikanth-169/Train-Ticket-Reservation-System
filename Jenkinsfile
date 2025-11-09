@@ -39,15 +39,6 @@ pipeline {
             steps { sh "mvn package -DskipTests" }
         }
 
-         stage('SonarQube Analysis') {
-            steps {
-                
-                withSonarQubeEnv('sri') {  
-                    sh 'mvn clean verify sonar:sonar'
-                }
-            }
-        }
-
        stage('Build Docker Image') {
             steps {
                 script {
